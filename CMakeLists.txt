@@ -58,7 +58,9 @@ if(APPLE)
         "${CMAKE_SHARED_MODULE_CREATE_C_FLAGS} -undefined dynamic_lookup")
 endif()
 
-if(WIN32)
+if (DEFINED OUT_PATH)
+    set(_lua_module_dir "${OUT_PATH}")
+elseif(WIN32)
     # Win32 modules need to be linked to the Lua library.
     set(_MODULE_LINK ${LUA_LIBRARY} ${_MODULE_LINK})
     set(_lua_module_dir "${_lua_lib_dir}")
